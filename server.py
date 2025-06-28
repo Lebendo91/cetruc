@@ -22,19 +22,21 @@ def send_confirmation_email(to_email, reservation):
 
     body = f"""
     <html>
-    <body style='font-family:sans-serif;'>
-        <h2>Réservation confirmée</h2>
-        <p>Bonjour <strong>{reservation['name']}</strong>,</p>
-        <p>Merci pour votre réservation du véhicule <strong>{reservation['carName']}</strong>.</p>
-        <ul>
-            <li>Du : {reservation['startDate']}</li>
-            <li>Au : {reservation['endDate']}</li>
-            <li>Paiement : {reservation['paymentMethod']}</li>
-        </ul>
-        <p>Un conseiller LuxDrive vous contactera prochainement.</p>
-        <hr>
-        <small>Ceci est un message automatique de LuxDrive.</small>
-    </body>
+      <body style="font-family: Arial, sans-serif; background-color: #f8f8f8; padding: 30px;">
+        <div style="max-width: 600px; margin: auto; background-color: #fff; border-radius: 10px; padding: 30px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+          <h2 style="color: #222;">✨ Réservation confirmée</h2>
+          <p>Bonjour <strong>{reservation['name']}</strong>,</p>
+          <p>Merci d'avoir réservé le véhicule <strong>{reservation['carName']}</strong> sur <span style="color: #000;">LuxDrive</span>.</p>
+          <ul style="list-style: none; padding: 0;">
+            <li><strong>🗓 Du :</strong> {reservation['startDate']}</li>
+            <li><strong>🗓 Au :</strong> {reservation['endDate']}</li>
+            <li><strong>💳 Paiement :</strong> {reservation['paymentMethod']}</li>
+          </ul>
+          <p style="margin-top: 20px;">Un conseiller vous contactera prochainement.</p>
+          <hr style="margin-top: 30px; border: none; border-top: 1px solid #eee;">
+          <p style="font-size: 12px; color: #777;">Ce message vous est envoyé automatiquement par LuxDrive.</p>
+        </div>
+      </body>
     </html>
     """
     msg.set_content("Confirmation de réservation")
@@ -73,9 +75,16 @@ def reserve():
 @app.route('/confirmation')
 def confirmation():
     return render_template_string("""
-        <h1>Réservation confirmée</h1>
-        <p>Merci pour votre confiance. Un conseiller LuxDrive vous contactera sous peu.</p>
-        <a href="/">Retour à l'accueil</a>
+        <html>
+        <head><meta charset="UTF-8"><title>Confirmation</title></head>
+        <body style="font-family:sans-serif; background:#f6f6f6; text-align:center; padding:50px;">
+          <div style="background:white; display:inline-block; padding:40px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1);">
+            <h1 style="color:#333;">✅ Réservation confirmée</h1>
+            <p style="font-size:18px;">Merci pour votre confiance. Un conseiller LuxDrive vous contactera sous peu.</p>
+            <a href="https://lebendo91.github.io/luuxe/#" style="display:inline-block; margin-top:20px; background:#000; color:white; padding:12px 24px; border-radius:6px; text-decoration:none;">Retour à l'accueil</a>
+          </div>
+        </body>
+        </html>
     """)
 
 @app.route('/success')
