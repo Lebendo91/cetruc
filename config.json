@@ -1,0 +1,8 @@
+{
+  "SMTP_HOST": "smtp.votrefournisseur.com",
+  "SMTP_PORT": 587,
+  "SMTP_USER": "ibrahim.boughalem06@gmail.com",
+  "SMTP_PASSWORD": "qnjv fwvb kqxw jzju",
+  "FROM_NAME": "LuxDrive",
+  "FROM_EMAIL": "ibrahim.boughalem06@gmail.com"
+}
