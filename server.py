@@ -1,11 +1,14 @@
 import smtplib
 from email.message import EmailMessage
 from flask import Flask, request, jsonify, render_template_string, redirect
+from flask_cors import CORS
 import json
 import os
 from datetime import datetime
 
-app = Flask(__name__, static_folder='.', static_url_path='', template_folder='.')
+app = Flask(__name__)
+CORS(app)
+
 RES_FILE = 'reservations.json'
 
 def send_confirmation_email(to_email, reservation):
@@ -84,6 +87,5 @@ def cancel():
     return "<h1>Paiement annulé</h1><p>La transaction a été interrompue.</p>"
 
 if __name__ == '__main__':
-    import os
     port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+    app.run(host='0.0.0.0', port=port)
